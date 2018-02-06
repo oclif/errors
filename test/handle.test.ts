@@ -6,7 +6,7 @@ import {CLIError, config, ExitError} from '../src'
 import {handle} from '../src/handle'
 
 const errlog = path.join(__dirname, '../tmp/mytest/error.log')
-const x = process.platform === 'win32' ? '×' : '✖'
+const x = process.platform === 'win32' ? '»' : '›'
 
 describe('handle', () => {
   fancy
