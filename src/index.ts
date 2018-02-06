@@ -9,6 +9,11 @@ export {config} from './config'
 
 import {config} from './config'
 import {CLIError} from './errors/cli'
+import {ExitError} from './errors/exit'
+
+export function exit(code = 0) {
+  throw new ExitError(code)
+}
 
 export function error(err: string | Error, options: {code?: string, exit?: number} = {}) {
   throw new CLIError(err, options)
