@@ -1,3 +1,11 @@
+<a name="0.2.0"></a>
+# [0.2.0](https://github.com/anycli/errors/compare/0a8f0bcd92c1add9742a3cbdaac69814508ab5fe...v0.2.0) (2018-02-06)
+
+
+### Features
+
+* added debug mode ([9e8e045](https://github.com/anycli/errors/commit/9e8e045))
+
 <a name="0.1.0"></a>
 # [0.1.0](https://github.com/anycli/errors/compare/5e19840abea86d17344ba3b53f11820bc41093f6...v0.1.0) (2018-02-06)
 
