@@ -1,3 +1,11 @@
+<a name="0.1.0"></a>
+# [0.1.0](https://github.com/anycli/errors/compare/5e19840abea86d17344ba3b53f11820bc41093f6...v0.1.0) (2018-02-06)
+
+
+### Features
+
+* add exit function ([0a8f0bc](https://github.com/anycli/errors/commit/0a8f0bc))
+
 <a name="0.0.3"></a>
 ## [0.0.3](https://github.com/anycli/errors/compare/c12a1a5eef7273091cec2b9eaaccd3448fd3ce7c...v0.0.3) (2018-02-06)
 
