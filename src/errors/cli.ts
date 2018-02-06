@@ -38,7 +38,7 @@ export class CLIError extends Error {
     let output = `${this.name}: ${this.message}`
     output = wrap(output, require('../screen').errtermwidth, {trim: false, hard: true} as any)
     output = indent(output, 3)
-    output = indent(output, 1, this.bang)
+    output = indent(output, 1, {indent: this.bang, includeEmptyLines: true} as any)
     output = indent(output, 1)
     return output
   }
@@ -46,7 +46,7 @@ export class CLIError extends Error {
   protected get bang() {
     let red: typeof Chalk.red = ((s: string) => s) as any
     try {red = require('chalk').red} catch {}
-    return red(process.platform === 'win32' ? '×' : '✖')
+    return red(process.platform === 'win32' ? '»' : '›')
   }
 }
 
@@ -60,7 +60,7 @@ export namespace CLIError {
     protected get bang() {
       let yellow: typeof Chalk.yellow = ((s: string) => s) as any
       try {yellow = require('chalk').yellow} catch {}
-      return yellow(process.platform === 'win32' ? '×' : '✖')
+      return yellow(process.platform === 'win32' ? '»' : '›')
     }
   }
 }
