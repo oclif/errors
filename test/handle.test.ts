@@ -5,7 +5,6 @@ import * as path from 'path'
 import {CLIError, config, ExitError} from '../src'
 import {handle} from '../src/handle'
 
-const wait = (ms: number) => new Promise(resolve => setTimeout(() => resolve(), ms).unref())
 const errlog = path.join(__dirname, '../tmp/mytest/error.log')
 
 describe('handle', () => {
@@ -56,7 +55,7 @@ describe('handle', () => {
     handle(new CLIError('uh oh!'))
     expect(ctx.stderr).to.equal(' ✖   Error: uh oh!\n')
     expect(process.exitCode).to.equal(2)
-    await wait(10)
+    await config.errorLogger!.flush()
     expect(fs.readFileSync(errlog, 'utf8')).to.contain('Error: uh oh!')
   })
 })
