@@ -6,6 +6,7 @@ import {CLIError, config, ExitError} from '../src'
 import {handle} from '../src/handle'
 
 const errlog = path.join(__dirname, '../tmp/mytest/error.log')
+const x = process.platform === 'win32' ? '×' : '✖'
 
 describe('handle', () => {
   fancy
@@ -31,7 +32,7 @@ describe('handle', () => {
   .finally(() => delete process.exitCode)
   .it('shows a cli error', ctx => {
     handle(new CLIError('x'))
-    expect(ctx.stderr).to.equal(' ✖   Error: x\n')
+    expect(ctx.stderr).to.equal(` ${x}   Error: x\n`)
     expect(process.exitCode).to.equal(2)
   })
 
@@ -53,7 +54,7 @@ describe('handle', () => {
   .finally(() => delete process.exitCode)
   .it('logs when errlog is set', async ctx => {
     handle(new CLIError('uh oh!'))
-    expect(ctx.stderr).to.equal(' ✖   Error: uh oh!\n')
+    expect(ctx.stderr).to.equal(` ${x}   Error: uh oh!\n`)
     expect(process.exitCode).to.equal(2)
     await config.errorLogger!.flush()
     expect(fs.readFileSync(errlog, 'utf8')).to.contain('Error: uh oh!')
