@@ -1,3 +1,12 @@
+<a name="0.2.1"></a>
+## [0.2.1](https://github.com/anycli/errors/compare/9e8e0453b06cb544002ed6cd39a24bad3798dd2e...v0.2.1) (2018-02-06)
+
+
+### Bug Fixes
+
+* fixed test suite ([7ad688c](https://github.com/anycli/errors/commit/7ad688c))
+* make bang less bold ([ee56ab5](https://github.com/anycli/errors/commit/ee56ab5))
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/anycli/errors/compare/0a8f0bcd92c1add9742a3cbdaac69814508ab5fe...v0.2.0) (2018-02-06)
 
