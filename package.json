@@ -34,7 +34,7 @@
   },
   "files": [
     "/lib",
-    "/handle"
+    "/handle.js"
   ],
   "homepage": "https://github.com/anycli/errors",
   "keywords": [
@@ -46,6 +46,7 @@
   "scripts": {
     "build": "rm -rf lib && tsc",
     "lint": "concurrently -p command \"tsc -p test --noEmit\" \"tslint -p test -t stylish\"",
+    "pretest": "yarn run build",
     "posttest": "yarn run lint",
     "prepublishOnly": "yarn run build",
     "test": "mocha --forbid-only \"test/**/*.test.ts\""
