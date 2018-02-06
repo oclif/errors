@@ -1,8 +1,11 @@
 // tslint:disable no-implicit-dependencies
 
 import Chalk from 'chalk'
+import Clean = require('clean-stack')
 import Indent = require('indent-string')
 import * as Wrap from 'wrap-ansi'
+
+import {config} from '../config'
 
 export class CLIError extends Error {
   anycli: any
@@ -20,7 +23,15 @@ export class CLIError extends Error {
     this.code = options.code
   }
 
+  get stack(): string {
+    const clean: typeof Clean = require('clean-stack')
+    return clean(super.stack!, {pretty: true})
+  }
+
   render(): string {
+    if (config.debug) {
+      return this.stack
+    }
     let wrap: typeof Wrap = require('wrap-ansi')
     let indent: typeof Indent = require('indent-string')
 
