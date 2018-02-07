@@ -1,3 +1,11 @@
+<a name="0.2.2"></a>
+## [0.2.2](https://github.com/anycli/errors/compare/7ad688c9e18f2f161e5cc43345b1c47175bc284f...v0.2.2) (2018-02-07)
+
+
+### Bug Fixes
+
+* better error handlings ([57a1e1a](https://github.com/anycli/errors/commit/57a1e1a))
+
 <a name="0.2.1"></a>
 ## [0.2.1](https://github.com/anycli/errors/compare/9e8e0453b06cb544002ed6cd39a24bad3798dd2e...v0.2.1) (2018-02-06)
 
