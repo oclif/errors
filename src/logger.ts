@@ -3,7 +3,11 @@ import * as path from 'path'
 import StripAnsi = require('strip-ansi')
 
 const timestamp = () => new Date().toISOString()
-const wait = (ms: number) => new Promise(resolve => setTimeout(() => resolve(), ms).unref())
+let timer: any
+const wait = (ms: number) => new Promise(resolve => {
+  if (timer) timer.unref()
+  timer = setTimeout(() => resolve(), ms)
+})
 
 function chomp(s: string): string {
   if (s.endsWith('\n')) return s.replace(/\n$/, '')
