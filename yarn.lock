@@ -6,9 +6,9 @@
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/@anycli/nyc-config/-/nyc-config-0.0.5.tgz#e38af7fb9437546fb9f5ef9ecf85c724b118d0dc"
 
-"@anycli/semantic-release@1":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@anycli/semantic-release/-/semantic-release-1.1.0.tgz#1c118fecf651b9f441a5f7ba8bf8a5e4f06c31b4"
+"@anycli/semantic-release@1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@anycli/semantic-release/-/semantic-release-1.1.1.tgz#637889fbba4aab855213ba2a751328205bb58bb6"
   dependencies:
     "@semantic-release/changelog" "^1.0.0"
     "@semantic-release/exec" "^1.0.2"
@@ -18,9 +18,9 @@
     execa "^0.9.0"
     semantic-release "^12.2.5"
 
-"@anycli/tslint@^0.2.6":
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/@anycli/tslint/-/tslint-0.2.6.tgz#4251f4cb3744dc577309b4351d2c2e8b65072de2"
+"@anycli/tslint@^0.2.7":
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/@anycli/tslint/-/tslint-0.2.7.tgz#68b81121f33e9aa8240bd12cfade1f6023e6820d"
   dependencies:
     tslint "^5.9.1"
     tslint-xo "^0.6.0"
@@ -262,9 +262,13 @@
   version "2.2.48"
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-2.2.48.tgz#3523b126a0b049482e1c3c11877460f76622ffab"
 
-"@types/node@*", "@types/node@^9.4.0":
+"@types/node@*":
   version "9.4.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.0.tgz#b85a0bcf1e1cc84eb4901b7e96966aedc6f078d1"
+
+"@types/node@^9.4.1":
+  version "9.4.1"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.1.tgz#0f636f7837e15d2d73a7f6f3ea0e322eb2a5ab65"
 
 "@types/strip-ansi@^3.0.0":
   version "3.0.0"
