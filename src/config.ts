@@ -2,7 +2,7 @@
 
 import {Logger} from './logger'
 
-const g = global.anycli = global.anycli || {}
+const g = global.oclif = global.oclif || {}
 
 function displayWarnings() {
   if (process.listenerCount('warning') > 1) return

@@ -1,7 +1,7 @@
 import {CLIError} from './cli'
 
 export class ExitError extends CLIError {
-  anycli!: { exit: number }
+  oclif!: { exit: number }
   code = 'EEXIT'
 
   constructor(exitCode = 0) {

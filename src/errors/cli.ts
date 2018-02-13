@@ -8,13 +8,13 @@ import * as Wrap from 'wrap-ansi'
 import {config} from '../config'
 
 export class CLIError extends Error {
-  anycli: any
+  oclif: any
   code?: string
 
   constructor(error: string | Error, options: {code?: string, exit?: number} = {}) {
     const addExitCode = (error: any) => {
-      error.anycli = error.anycli || {}
-      error.anycli.exit = options.exit === undefined ? 2 : options.exit
+      error.oclif = error.oclif || {}
+      error.oclif.exit = options.exit === undefined ? 2 : options.exit
       return error
     }
     if (error instanceof Error) return addExitCode(error as any)

@@ -9,9 +9,9 @@ export const handle = (err: any) => {
     if (!err) err = new Error('no error?')
     let stack = clean(err.stack, {pretty: true})
     let message = stack
-    if (err.anycli && err.render) message = err.render()
+    if (err.oclif && err.render) message = err.render()
     if (message) console.error(message)
-    process.exitCode = (err.anycli && err.anycli.exit !== undefined) ? err.anycli.exit : 1
+    process.exitCode = (err.oclif && err.oclif.exit !== undefined) ? err.oclif.exit : 1
     if (config.errorLogger) {
       config.errorLogger.log(stack)
       config.errorLogger.flush()

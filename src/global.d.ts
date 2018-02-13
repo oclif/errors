@@ -2,7 +2,7 @@
 
 declare namespace NodeJS {
   interface Global {
-    anycli?: {
+    oclif?: {
       debug?: boolean
       errlog?: string
     }
