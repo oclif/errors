@@ -1,3 +1,11 @@
+<a name="1.0.1"></a>
+## [1.0.1](https://github.com/oclif/errors/compare/v1.0.0...v1.0.1) (2018-02-13)
+
+
+### Bug Fixes
+
+* testing release ([bfd09be](https://github.com/oclif/errors/commit/bfd09be))
+
 <a name="0.2.2"></a>
 ## [0.2.2](https://github.com/anycli/errors/compare/7ad688c9e18f2f161e5cc43345b1c47175bc284f...v0.2.2) (2018-02-07)
 
