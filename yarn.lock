@@ -2,11 +2,10 @@
 # yarn lockfile v1
 
 
-"@oclif/tslint@^0.2.7":
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/@oclif/tslint/-/tslint-0.2.7.tgz#65005a742e710cf4ad1e88a6ca8f1dde43e61db7"
+"@oclif/tslint@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@oclif/tslint/-/tslint-1.0.1.tgz#ef68459638548e3a3a06fd6da60025fe33f4bcb8"
   dependencies:
-    tslint "^5.9.1"
     tslint-xo "^0.6.0"
 
 "@types/chai@^4.1.2":
@@ -31,9 +30,13 @@
   version "2.2.48"
   resolved "https://registry.yarnpkg.com/@types/mocha/-/mocha-2.2.48.tgz#3523b126a0b049482e1c3c11877460f76622ffab"
 
-"@types/node@*", "@types/node@^9.4.5":
+"@types/node@*":
   version "9.4.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.5.tgz#d2a90c634208173d1b1a0a6ba9f1df3de62edcf5"
+
+"@types/node@^9.4.6":
+  version "9.4.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.6.tgz#d8176d864ee48753d053783e4e463aec86b8d82e"
 
 "@types/strip-ansi@^3.0.0":
   version "3.0.0"
@@ -395,9 +398,9 @@ mkdirp@0.5.1, mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
-mocha@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/mocha/-/mocha-5.0.0.tgz#cccac988b0bc5477119cba0e43de7af6d6ad8f4e"
+mocha@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/mocha/-/mocha-5.0.1.tgz#759b62c836b0732382a62b6b1fb245ec1bc943ac"
   dependencies:
     browser-stdout "1.3.0"
     commander "2.11.0"
