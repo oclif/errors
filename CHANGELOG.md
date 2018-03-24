@@ -1,3 +1,11 @@
+<a name="1.0.3"></a>
+## [1.0.3](https://github.com/oclif/errors/compare/v1.0.2...v1.0.3) (2018-03-24)
+
+
+### Bug Fixes
+
+* only render if it is a function ([6528f45](https://github.com/oclif/errors/commit/6528f45))
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/oclif/errors/compare/v1.0.0...v1.0.1) (2018-02-13)
 
