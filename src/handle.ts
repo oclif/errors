@@ -12,7 +12,7 @@ export const handle = (err: any) => {
     if (err.oclif && typeof err.render === 'function') message = err.render()
     if (message) console.error(message)
     process.exitCode = (err.oclif && err.oclif.exit !== undefined) ? err.oclif.exit : 1
-    if (config.errorLogger) {
+    if (config.errorLogger && err.code !== 'EEXIT') {
       config.errorLogger.log(stack)
       config.errorLogger.flush()
       .catch(console.error)
