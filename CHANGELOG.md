@@ -1,3 +1,11 @@
+<a name="1.0.4"></a>
+## [1.0.4](https://github.com/oclif/errors/compare/6528f456cec3e5102e0a255061816da9ba455a89...v1.0.4) (2018-04-07)
+
+
+### Bug Fixes
+
+* hide EEXIT errors from logfile ([266b7f6](https://github.com/oclif/errors/commit/266b7f6))
+
 <a name="1.0.3"></a>
 ## [1.0.3](https://github.com/oclif/errors/compare/v1.0.2...v1.0.3) (2018-03-24)
 
