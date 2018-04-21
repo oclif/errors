@@ -1,3 +1,11 @@
+<a name="1.0.5"></a>
+## [1.0.5](https://github.com/oclif/errors/compare/266b7f622295242539669cb0327dd17067ec9e3c...v1.0.5) (2018-04-21)
+
+
+### Bug Fixes
+
+* only render if it is a function ([e7a5d46](https://github.com/oclif/errors/commit/e7a5d46))
+
 <a name="1.0.4"></a>
 ## [1.0.4](https://github.com/oclif/errors/compare/6528f456cec3e5102e0a255061816da9ba455a89...v1.0.4) (2018-04-07)
 
