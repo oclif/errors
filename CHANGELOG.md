@@ -1,3 +1,11 @@
+<a name="1.0.6"></a>
+## [1.0.6](https://github.com/oclif/errors/compare/e7a5d464b3e7039aa0d8b9734b48a97717980417...v1.0.6) (2018-04-21)
+
+
+### Bug Fixes
+
+* fix warning rendering ([3668c90](https://github.com/oclif/errors/commit/3668c90))
+
 <a name="1.0.5"></a>
 ## [1.0.5](https://github.com/oclif/errors/compare/266b7f622295242539669cb0327dd17067ec9e3c...v1.0.5) (2018-04-21)
 
