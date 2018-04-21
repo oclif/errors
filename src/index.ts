@@ -20,6 +20,6 @@ export function error(err: string | Error, options: {code?: string, exit?: numbe
 
 export function warn(input: string | Error) {
   let err = new CLIError.Warn(input)
-  console.error(err.render())
+  console.error(err.render ? err.render() : err.message)
   if (config.errorLogger) config.errorLogger.log(err.stack)
 }
