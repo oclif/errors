@@ -1,3 +1,11 @@
+<a name="1.0.7"></a>
+## [1.0.7](https://github.com/oclif/errors/compare/3668c9074d87de57a63938379b0458ab373fb76b...v1.0.7) (2018-05-01)
+
+
+### Bug Fixes
+
+* updated fs-extra ([452c383](https://github.com/oclif/errors/commit/452c383))
+
 <a name="1.0.6"></a>
 ## [1.0.6](https://github.com/oclif/errors/compare/e7a5d464b3e7039aa0d8b9734b48a97717980417...v1.0.6) (2018-04-21)
 
