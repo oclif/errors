@@ -1,3 +1,11 @@
+<a name="1.0.8"></a>
+## [1.0.8](https://github.com/oclif/errors/compare/452c383c79744cc24fe4439aa49590379848e8a8...v1.0.8) (2018-05-02)
+
+
+### Bug Fixes
+
+* error wrapping ([c314aef](https://github.com/oclif/errors/commit/c314aef))
+
 <a name="1.0.7"></a>
 ## [1.0.7](https://github.com/oclif/errors/compare/3668c9074d87de57a63938379b0458ab373fb76b...v1.0.7) (2018-05-01)
 
