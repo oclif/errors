@@ -36,7 +36,7 @@ export class CLIError extends Error {
     let indent: typeof Indent = require('indent-string')
 
     let output = `${this.name}: ${this.message}`
-    output = wrap(output, require('../screen').errtermwidth, {trim: false, hard: true} as any)
+    output = wrap(output, require('../screen').errtermwidth - 6, {trim: false, hard: true} as any)
     output = indent(output, 3)
     output = indent(output, 1, {indent: this.bang, includeEmptyLines: true} as any)
     output = indent(output, 1)
