@@ -14,7 +14,7 @@ export function exit(code = 0) {
   throw new ExitError(code)
 }
 
-export function error(err: string | Error, options: {code?: string, exit?: number} = {}) {
+export function error(err: string | Error, options: {code?: string, exit?: number} = {}): never {
   throw new CLIError(err, options)
 }
 
