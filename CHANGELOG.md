@@ -1,3 +1,12 @@
+<a name="1.0.9"></a>
+## [1.0.9](https://github.com/oclif/errors/compare/c314aefee4aea31ab0fb6d58593517a77b505ac3...v1.0.9) (2018-05-06)
+
+
+### Bug Fixes
+
+* return type of error function ([eef7598](https://github.com/oclif/errors/commit/eef7598))
+* return type of exit ([74d02c2](https://github.com/oclif/errors/commit/74d02c2))
+
 <a name="1.0.8"></a>
 ## [1.0.8](https://github.com/oclif/errors/compare/452c383c79744cc24fe4439aa49590379848e8a8...v1.0.8) (2018-05-02)
 
