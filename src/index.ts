@@ -10,7 +10,7 @@ import {config} from './config'
 import {CLIError} from './errors/cli'
 import {ExitError} from './errors/exit'
 
-export function exit(code = 0) {
+export function exit(code = 0): never {
   throw new ExitError(code)
 }
 
