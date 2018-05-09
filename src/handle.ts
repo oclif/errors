@@ -11,14 +11,16 @@ export const handle = (err: any) => {
     let message = stack
     if (err.oclif && typeof err.render === 'function') message = err.render()
     if (message) console.error(message)
-    process.exitCode = (err.oclif && err.oclif.exit !== undefined) ? err.oclif.exit : 1
+    const exitCode = (err.oclif && err.oclif.exit !== undefined) ? err.oclif.exit : 1
     if (config.errorLogger && err.code !== 'EEXIT') {
       config.errorLogger.log(stack)
       config.errorLogger.flush()
+      .then(() => process.exit(exitCode))
       .catch(console.error)
-    }
+    } else process.exit(exitCode)
   } catch (e) {
     console.error(err.stack)
     console.error(e.stack)
+    process.exit(1)
   }
 }
