@@ -1,3 +1,11 @@
+<a name="1.0.11"></a>
+## [1.0.11](https://github.com/oclif/errors/compare/18d489147a952bdeece6fbfaae4ca7b0615817ce...v1.0.11) (2018-05-09)
+
+
+### Bug Fixes
+
+* clean exit on sigint ([02aadd5](https://github.com/oclif/errors/commit/02aadd5))
+
 <a name="1.0.10"></a>
 ## [1.0.10](https://github.com/oclif/errors/compare/74d02c2c63f93a9e051abc3cbd48dc9eaabb74c9...v1.0.10) (2018-05-09)
 
