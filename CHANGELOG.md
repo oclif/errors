@@ -1,3 +1,11 @@
+<a name="1.0.10"></a>
+## [1.0.10](https://github.com/oclif/errors/compare/74d02c2c63f93a9e051abc3cbd48dc9eaabb74c9...v1.0.10) (2018-05-09)
+
+
+### Bug Fixes
+
+* force exiting on errors ([18d4891](https://github.com/oclif/errors/commit/18d4891))
+
 <a name="1.0.9"></a>
 ## [1.0.9](https://github.com/oclif/errors/compare/c314aefee4aea31ab0fb6d58593517a77b505ac3...v1.0.9) (2018-05-06)
 
