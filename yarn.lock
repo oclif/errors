@@ -34,9 +34,9 @@
   version "9.4.5"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-9.4.5.tgz#d2a90c634208173d1b1a0a6ba9f1df3de62edcf5"
 
-"@types/node@^10.0.6":
-  version "10.0.6"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.0.6.tgz#c0bce8e539bf34c1b850c13ff46bead2fecc2e58"
+"@types/node@^10.0.7":
+  version "10.0.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.0.7.tgz#c1c9e2a68be8c1544c8761012cd6cf722949691f"
 
 "@types/strip-ansi@^3.0.0":
   version "3.0.0"
@@ -267,9 +267,9 @@ fancy-test@^1.0.8:
     lodash "^4.17.10"
     stdout-stderr "^0.1.9"
 
-fs-extra@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-6.0.0.tgz#0f0afb290bb3deb87978da816fcd3c7797f3a817"
+fs-extra@^6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-6.0.1.tgz#8abc128f7946e310135ddc93b98bddb410e7a34b"
   dependencies:
     graceful-fs "^4.1.2"
     jsonfile "^4.0.0"
