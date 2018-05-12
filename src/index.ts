@@ -14,7 +14,7 @@ export function exit(code = 0): never {
   throw new ExitError(code)
 }
 
-export function error(input: string | Error, options: {code?: string, exit?: false}): void
+export function error(input: string | Error, options: {code?: string, exit: false}): void
 export function error(input: string | Error, options?: {code?: string, exit?: number}): never
 export function error(input: string | Error, options: {code?: string, exit?: number | false} = {}) {
   const err = new CLIError(input, options)
