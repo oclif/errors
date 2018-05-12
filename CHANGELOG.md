@@ -1,3 +1,11 @@
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/oclif/errors/compare/6694bc782ac5ff4d1a5844106544238ac189dd58...v1.1.1) (2018-05-12)
+
+
+### Bug Fixes
+
+* typing ([ca758e6](https://github.com/oclif/errors/commit/ca758e6))
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/oclif/errors/compare/100472457af1a172e10410e63900fc3e268e3af5...v1.1.0) (2018-05-12)
 
