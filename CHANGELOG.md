@@ -1,3 +1,11 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/oclif/errors/compare/100472457af1a172e10410e63900fc3e268e3af5...v1.1.0) (2018-05-12)
+
+
+### Features
+
+* allow printing errors without exiting ([6694bc7](https://github.com/oclif/errors/commit/6694bc7))
+
 <a name="1.0.12"></a>
 ## [1.0.12](https://github.com/oclif/errors/compare/02aadd51988e662b77c20c03809dca03f77a1695...v1.0.12) (2018-05-10)
 
