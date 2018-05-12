@@ -11,7 +11,7 @@ export class CLIError extends Error {
   oclif: any
   code?: string
 
-  constructor(error: string | Error, options: {code?: string, exit?: number} = {}) {
+  constructor(error: string | Error, options: {code?: string, exit?: number | false} = {}) {
     const addExitCode = (error: any) => {
       error.oclif = error.oclif || {}
       error.oclif.exit = options.exit === undefined ? 2 : options.exit
