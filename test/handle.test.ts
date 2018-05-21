@@ -39,6 +39,14 @@ describe('handle', () => {
   fancy
   .stderr()
   .finally(() => delete process.exitCode)
+  .it('handles a badly formed error object', () => {
+    handle({status: 400})
+    expect(process.exitCode).to.equal(1)
+  })
+
+  fancy
+  .stderr()
+  .finally(() => delete process.exitCode)
   .it('shows a cli error', ctx => {
     handle(new CLIError('x'))
     expect(ctx.stderr).to.equal(` ${x}   Error: x\n`)

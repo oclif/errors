@@ -8,7 +8,7 @@ export const handle = (err: any) => {
   try {
     if (!err) err = new Error('no error?')
     if (err.message === 'SIGINT') process.exit(1)
-    let stack = clean(err.stack, {pretty: true})
+    let stack = clean(err.stack || '', {pretty: true})
     let message = stack
     if (err.oclif && typeof err.render === 'function') message = err.render()
     if (message) console.error(message)
