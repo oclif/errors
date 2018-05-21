@@ -1,3 +1,11 @@
+<a name="1.1.2"></a>
+## [1.1.2](https://github.com/oclif/errors/compare/ca758e6a4e3c3016fa93114e62b248868cb51de2...v1.1.2) (2018-05-21)
+
+
+### Bug Fixes
+
+* Handle misformed error response (without `stack`) ([#8](https://github.com/oclif/errors/issues/8)) ([9ae1790](https://github.com/oclif/errors/commit/9ae1790))
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/oclif/errors/compare/6694bc782ac5ff4d1a5844106544238ac189dd58...v1.1.1) (2018-05-12)
 
