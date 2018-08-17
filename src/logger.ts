@@ -25,10 +25,11 @@ export class Logger {
     msg = stripAnsi(chomp(msg))
     let lines = msg.split('\n').map(l => `${timestamp()} ${l}`.trimRight())
     this.buffer.push(...lines)
+    // tslint:disable-next-line no-console
     this.flush(50).catch(console.error)
   }
 
-  async flush(waitForMs: number = 0) {
+  async flush(waitForMs = 0) {
     await wait(waitForMs)
     this.flushing = this.flushing.then(async () => {
       if (this.buffer.length === 0) return
