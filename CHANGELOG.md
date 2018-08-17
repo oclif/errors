@@ -1,3 +1,11 @@
+<a name="1.2.0"></a>
+# [1.2.0](https://github.com/oclif/errors/compare/9ae179034c7c8bdc1c62f03eb819d58de7735f3d...v1.2.0) (2018-08-17)
+
+
+### Features
+
+* typescript 3 ([5332289](https://github.com/oclif/errors/commit/5332289))
+
 <a name="1.1.2"></a>
 ## [1.1.2](https://github.com/oclif/errors/compare/ca758e6a4e3c3016fa93114e62b248868cb51de2...v1.1.2) (2018-05-21)
 
