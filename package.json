@@ -23,7 +23,7 @@
     "@types/wrap-ansi": "^3.0.0",
     "chai": "^4.1.2",
     "chalk": "^2.4.1",
-    "concurrently": "^3.6.1",
+    "concurrently": "^4.0.0",
     "fancy-test": "^1.2.0",
     "mocha": "^5.2.0",
     "ts-node": "^7.0.1",
