@@ -9,7 +9,7 @@
     "fs-extra": "^7.0.0",
     "indent-string": "^3.2.0",
     "strip-ansi": "^4.0.0",
-    "wrap-ansi": "^3.0.1"
+    "wrap-ansi": "^4.0.0"
   },
   "devDependencies": {
     "@oclif/tslint": "^2.0.0",
