@@ -16,8 +16,8 @@ export const handle = (err: any) => {
     if (config.errorLogger && err.code !== 'EEXIT') {
       config.errorLogger.log(stack)
       config.errorLogger.flush()
-      .then(() => process.exit(exitCode))
-      .catch(console.error)
+        .then(() => process.exit(exitCode))
+        .catch(console.error)
     } else process.exit(exitCode)
   } catch (e) {
     console.error(err.stack)

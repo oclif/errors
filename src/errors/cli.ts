@@ -45,7 +45,7 @@ export class CLIError extends Error {
 
   protected get bang() {
     let red: typeof Chalk.red = ((s: string) => s) as any
-    try {red = require('chalk').red} catch {}
+    try { red = require('chalk').red } catch {}
     return red(process.platform === 'win32' ? '»' : '›')
   }
 }
@@ -59,7 +59,7 @@ export namespace CLIError {
 
     protected get bang() {
       let yellow: typeof Chalk.yellow = ((s: string) => s) as any
-      try {yellow = require('chalk').yellow} catch {}
+      try { yellow = require('chalk').yellow } catch {}
       return yellow(process.platform === 'win32' ? '»' : '›')
     }
   }
