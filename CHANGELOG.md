@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/oclif/errors/compare/v1.2.0...v1.2.1) (2018-09-14)
+
+
+### Bug Fixes
+
+* updated deps ([7996855](https://github.com/oclif/errors/commit/7996855))
+
 <a name="1.2.0"></a>
 # [1.2.0](https://github.com/oclif/errors/compare/9ae179034c7c8bdc1c62f03eb819d58de7735f3d...v1.2.0) (2018-08-17)
 
