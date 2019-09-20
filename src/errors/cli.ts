@@ -10,22 +10,25 @@ import {config} from '../config'
 export class CLIError extends Error {
   oclif: any
   code?: string
+  originalStack?: string
 
   constructor(error: string | Error, options: {code?: string, exit?: number | false} = {}) {
-    const addExitCode = (error: any) => {
-      error.oclif = error.oclif || {}
-      error.oclif.exit = options.exit === undefined ? 2 : options.exit
-      return error
+    if (error instanceof Error) {
+      super(error.message)
+      this.oclif = (error as any).oclif || {}
+      this.originalStack = error.stack || undefined
+    } else {
+      super(error)
+      this.oclif = {}
+      this.originalStack = undefined
     }
-    if (error instanceof Error) return addExitCode(error as any)
-    super(error)
-    addExitCode(this)
+    this.oclif.exit = options.exit === undefined ? 2 : options.exit
     this.code = options.code
   }
 
   get stack(): string {
     const clean: typeof Clean = require('clean-stack')
-    return clean(super.stack!, {pretty: true})
+    return clean(this.originalStack ? this.originalStack : super.stack!, {pretty: true})
   }
 
   render(): string {
