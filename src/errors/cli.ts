@@ -13,17 +13,20 @@ export class CLIError extends Error {
   originalStack?: string
 
   constructor(error: string | Error, options: {code?: string, exit?: number | false} = {}) {
+    const defaultExit = 2
     if (error instanceof Error) {
       super(error.message)
       this.oclif = (error as any).oclif || {}
-      this.originalStack = error.stack || undefined
+      this.oclif.exit = options.exit !== undefined ? options.exit :
+          this.oclif.exit !== undefined ? this.oclif.exit : defaultExit
+      this.originalStack = (error as any).originalStack || error.stack
+      this.code = options.code !== undefined ? options.code : (error as any).code
     } else {
       super(error)
       this.oclif = {}
-      this.originalStack = undefined
+      this.oclif.exit = options.exit !== undefined ? options.exit : defaultExit
+      this.code = options.code
     }
-    this.oclif.exit = options.exit === undefined ? 2 : options.exit
-    this.code = options.code
   }
 
   get stack(): string {
