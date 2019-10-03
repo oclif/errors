@@ -17,4 +17,3 @@ after_test:
       bash codecov.sh
 
 build: off
-
