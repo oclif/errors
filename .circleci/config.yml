@@ -19,10 +19,14 @@ jobs:
           $NYC yarn test
           $NYC report --reporter text-lcov > coverage.lcov
           curl -s https://codecov.io/bash | bash
-  node-8:
+  node-12:
     <<: *test
     docker:
-      - image: node:8
+      - image: node:12
+  node-10:
+    <<: *test
+    docker:
+      - image: node:10
   release:
     <<: *test
     steps:
@@ -53,4 +57,5 @@ workflows:
             branches: {only: master}
           requires:
             - node-latest
-            - node-8
+            - node-12
+            - node-10
