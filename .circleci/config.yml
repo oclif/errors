@@ -50,7 +50,8 @@ workflows:
   "@oclif/errors":
     jobs:
       - node-latest
-      - node-8
+      - node-12
+      - node-10
       - release:
           context: org-global
           filters:
