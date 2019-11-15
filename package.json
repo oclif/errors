@@ -45,10 +45,10 @@
   "repository": "oclif/errors",
   "scripts": {
     "build": "rm -rf lib && tsc",
-    "lint": "tsc -p test --noEmit && tslint -p test -t stylish",
-    "posttest": "yarn run lint",
+    "lint": "eslint . --ext .ts --config .eslintrc",
+    "posttest": "yarn lint",
     "prepublishOnly": "yarn run build",
-    "pretest": "yarn run build",
+    "pretest": "tsc -p test --noEmit",
     "test": "mocha --forbid-only \"test/**/*.test.ts\""
   },
   "types": "lib/index.d.ts"
