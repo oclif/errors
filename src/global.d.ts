@@ -3,8 +3,8 @@
 declare namespace NodeJS {
   interface Global {
     oclif?: {
-      debug?: boolean
-      errlog?: string
-    }
+      debug?: boolean;
+      errlog?: string;
+    };
   }
 }

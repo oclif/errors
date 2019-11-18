@@ -1,8 +1,7 @@
-// tslint:disable no-console
-
 import {Logger} from './logger'
 
-const g = (global as any).oclif = (global as any).oclif || {}
+(global as any).oclif = (global as any).oclif || {}
+const g = global.oclif
 
 function displayWarnings() {
   if (process.listenerCount('warning') > 1) return
@@ -14,12 +13,16 @@ function displayWarnings() {
 
 export const config = {
   errorLogger: undefined as Logger | undefined,
-  get debug(): boolean { return !!g.debug },
+  get debug(): boolean {
+    return Boolean(g.debug)
+  },
   set debug(enabled: boolean) {
     g.debug = enabled
     if (enabled) displayWarnings()
   },
-  get errlog(): string | undefined { return g.errlog },
+  get errlog(): string | undefined {
+    return g.errlog
+  },
   set errlog(errlog: string | undefined) {
     g.errlog = errlog
     if (errlog) this.errorLogger = new Logger(errlog)

@@ -1,4 +1,5 @@
-// tslint:disable no-console
+/* eslint-disable no-process-exit */
+/* eslint-disable unicorn/no-process-exit */
 
 import clean = require('clean-stack')
 
@@ -8,7 +9,7 @@ export const handle = (err: any) => {
   try {
     if (!err) err = new Error('no error?')
     if (err.message === 'SIGINT') process.exit(1)
-    let stack = clean(err.stack || '', {pretty: true})
+    const stack = clean(err.stack || '', {pretty: true})
     let message = stack
     if (err.oclif && typeof err.render === 'function') message = err.render()
     if (message) console.error(message)
@@ -16,12 +17,12 @@ export const handle = (err: any) => {
     if (config.errorLogger && err.code !== 'EEXIT') {
       config.errorLogger.log(stack)
       config.errorLogger.flush()
-        .then(() => process.exit(exitCode))
-        .catch(console.error)
+      .then(() => process.exit(exitCode))
+      .catch(console.error)
     } else process.exit(exitCode)
-  } catch (e) {
+  } catch (error) {
     console.error(err.stack)
-    console.error(e.stack)
+    console.error(error.stack)
     process.exit(1)
   }
 }
