@@ -1,7 +1,7 @@
 import {Logger} from './logger'
 
-(global as any).oclif = (global as any).oclif || {}
-const g = global.oclif
+const g = (global as any).oclif! || {}
+global.oclif = g
 
 function displayWarnings() {
   if (process.listenerCount('warning') > 1) return
