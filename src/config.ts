@@ -1,7 +1,7 @@
 import {Logger} from './logger'
 
-const g = (global as any).oclif! || {}
-global.oclif = g
+// eslint-disable-next-line no-multi-assign
+const g = (global as any).oclif = (global as any).oclif || {}
 
 function displayWarnings() {
   if (process.listenerCount('warning') > 1) return
