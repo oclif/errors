@@ -9,9 +9,10 @@ import {config} from '../config'
 
 export class CLIError extends Error {
   oclif: any
+
   code?: string
 
-  constructor(error: string | Error, options: {code?: string, exit?: number | false} = {}) {
+  constructor(error: string | Error, options: {code?: string; exit?: number | false} = {}) {
     const addExitCode = (error: any) => {
       error.oclif = error.oclif || {}
       error.oclif.exit = options.exit === undefined ? 2 : options.exit
@@ -32,10 +33,11 @@ export class CLIError extends Error {
     if (config.debug) {
       return this.stack
     }
-    let wrap: typeof Wrap = require('wrap-ansi')
-    let indent: typeof Indent = require('indent-string')
+    const wrap: typeof Wrap = require('wrap-ansi')
+    const indent: typeof Indent = require('indent-string')
 
     let output = `${this.name}: ${this.message}`
+    // eslint-disable-next-line node/no-missing-require
     output = wrap(output, require('../screen').errtermwidth - 6, {trim: false, hard: true} as any)
     output = indent(output, 3)
     output = indent(output, 1, {indent: this.bang, includeEmptyLines: true} as any)
@@ -45,7 +47,9 @@ export class CLIError extends Error {
 
   protected get bang() {
     let red: typeof Chalk.red = ((s: string) => s) as any
-    try { red = require('chalk').red } catch {}
+    try {
+      red = require('chalk').red
+    } catch {}
     return red(process.platform === 'win32' ? '»' : '›')
   }
 }
@@ -59,7 +63,9 @@ export namespace CLIError {
 
     protected get bang() {
       let yellow: typeof Chalk.yellow = ((s: string) => s) as any
-      try { yellow = require('chalk').yellow } catch {}
+      try {
+        yellow = require('chalk').yellow
+      } catch {}
       return yellow(process.platform === 'win32' ? '»' : '›')
     }
   }

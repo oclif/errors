@@ -16,14 +16,16 @@ function chomp(s: string): string {
 
 export class Logger {
   protected flushing: Promise<void> = Promise.resolve()
+
   protected buffer: string[] = []
 
+  // eslint-disable-next-line no-useless-constructor
   constructor(public file: string) {}
 
   log(msg: string) {
-    let stripAnsi: typeof StripAnsi = require('strip-ansi')
+    const stripAnsi: typeof StripAnsi = require('strip-ansi')
     msg = stripAnsi(chomp(msg))
-    let lines = msg.split('\n').map(l => `${timestamp()} ${l}`.trimRight())
+    const lines = msg.split('\n').map(l => `${timestamp()} ${l}`.trimRight())
     this.buffer.push(...lines)
     // tslint:disable-next-line no-console
     this.flush(50).catch(console.error)
