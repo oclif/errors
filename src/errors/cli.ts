@@ -6,13 +6,14 @@ import Indent = require('indent-string')
 import * as Wrap from 'wrap-ansi'
 
 import {config} from '../config'
+import {PrettyPrintableError} from './pretty-print'
 
 export class CLIError extends Error {
   oclif: any
 
   code?: string
 
-  constructor(error: string | Error, options: {code?: string; exit?: number | false} = {}) {
+  constructor(error: string | Error, options: {exit?: number | false} & PrettyPrintableError = {}) {
     const addExitCode = (error: any) => {
       error.oclif = error.oclif || {}
       error.oclif.exit = options.exit === undefined ? 2 : options.exit
@@ -45,7 +46,7 @@ export class CLIError extends Error {
     return output
   }
 
-  protected get bang() {
+  get bang() {
     let red: typeof Chalk.red = ((s: string) => s) as any
     try {
       red = require('chalk').red
@@ -61,7 +62,7 @@ export namespace CLIError {
       this.name = 'Warning'
     }
 
-    protected get bang() {
+    get bang() {
       let yellow: typeof Chalk.yellow = ((s: string) => s) as any
       try {
         yellow = require('chalk').yellow
