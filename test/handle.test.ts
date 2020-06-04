@@ -42,7 +42,7 @@ describe('handle', () => {
   .stderr()
   .finally(() => delete process.exitCode)
   .it('handles a badly formed error object', () => {
-    handle({status: 400})
+    handle({status: 400} as any)
     expect(process.exitCode).to.equal(1)
   })
 
