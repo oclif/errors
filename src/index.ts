@@ -7,39 +7,48 @@ export {Logger} from './logger'
 export {config} from './config'
 
 import {config} from './config'
-import {CLIError} from './errors/cli'
+import {CLIError, addOclifExitCode, ExitableError} from './errors/cli'
 import {ExitError} from './errors/exit'
-import {PrettyPrintableError} from './errors/pretty-print'
+import prettyPrint, {PrettyPrintableError, applyPrettyPrintOptions} from './errors/pretty-print'
 
 export function exit(code = 0): never {
   throw new ExitError(code)
 }
 
-function applyPrettyPrintOptions(error: Error & Partial<PrettyPrintableError>, options: PrettyPrintableError) {
-  const prettyErrorKeys: (keyof PrettyPrintableError)[] = ['message', 'code', 'ref', 'suggestion']
-
-  prettyErrorKeys.forEach(key => {
-    const applyOptionsKey = !error[key] && options[key]
-    if (applyOptionsKey) {
-      error[key] = options[key] as any
-    }
-  })
-}
-
 export function error(input: string | Error, options: {exit: false} & PrettyPrintableError): void
 export function error(input: string | Error, options?: {exit?: number} & PrettyPrintableError): never
 export function error(input: string | Error, options: {exit?: number | false} & PrettyPrintableError = {}) {
-  const err = new CLIError(input, options)
-  applyPrettyPrintOptions(err, options)
+  let err: Error & ExitableError
+
+  if (typeof input === 'string') {
+    err = new CLIError(input, options)
+  } else if (input instanceof Error) {
+    err = addOclifExitCode(input, options) as Error & ExitableError
+  } else {
+    throw new TypeError('first argument must be a string or instance of Error')
+  }
+
+  err = applyPrettyPrintOptions(err, options) as Error & ExitableError & PrettyPrintableError
 
   if (options.exit === false) {
-    console.error(err.render ? err.render() : `Error ${err.message}`)
-    if (config.errorLogger) config.errorLogger.log(err.stack)
+    const message = prettyPrint(err)
+    console.error(message)
+    if (config.errorLogger) config.errorLogger.log(err?.stack ?? '')
   } else throw err
 }
 
 export function warn(input: string | Error) {
-  const err = new CLIError.Warn(input)
-  console.error(err.render ? err.render() : `Warning: ${err.message}`)
-  if (config.errorLogger) config.errorLogger.log(err.stack)
+  let err: Error & ExitableError
+
+  if (typeof input === 'string') {
+    err = new CLIError.Warn(input)
+  } else if (input instanceof Error) {
+    err = addOclifExitCode(input) as Error & ExitableError
+  } else {
+    throw new TypeError('first argument must be a string or instance of Error')
+  }
+
+  const message = prettyPrint(err)
+  console.error(message)
+  if (config.errorLogger) config.errorLogger.log(err?.stack ?? '')
 }

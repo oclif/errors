@@ -1,6 +1,7 @@
 import * as wrap from 'wrap-ansi'
 import indent = require('indent-string')
 import * as screen from '../screen'
+import {config} from '../config'
 
 export interface PrettyPrintableError {
   /**
@@ -28,7 +29,24 @@ export interface PrettyPrintableError {
 // These exist for backwards compatibility with CLIError
 type CLIErrorDisplayOptions = { name?: string; bang?: string }
 
-export default function prettyPrint(error: PrettyPrintableError & CLIErrorDisplayOptions) {
+export function applyPrettyPrintOptions(error: Error, options: PrettyPrintableError): PrettyPrintableError {
+  const prettyErrorKeys: (keyof PrettyPrintableError)[] = ['message', 'code', 'ref', 'suggestion']
+
+  prettyErrorKeys.forEach(key => {
+    const applyOptionsKey = !(key in error) && options[key]
+    if (applyOptionsKey) {
+      (error as PrettyPrintableError)[key] = options[key]
+    }
+  })
+
+  return error
+}
+
+export default function prettyPrint(error: Error & PrettyPrintableError & CLIErrorDisplayOptions) {
+  if (config.debug) {
+    return error.stack
+  }
+
   const {message, code, suggestion, ref, name: errorSuffix, bang} = error
 
   // errorSuffix is pulled from the 'name' property on CLIError

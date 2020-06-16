@@ -8,20 +8,26 @@ import * as Wrap from 'wrap-ansi'
 import {config} from '../config'
 import {PrettyPrintableError} from './pretty-print'
 
-export class CLIError extends Error {
-  oclif: any
+export interface ExitableError {
+  oclif?: {
+    exit?: number | false;
+  };
+}
+
+export function addOclifExitCode(error: Error & ExitableError, options?: {exit?: number | false}): ExitableError {
+  error.oclif = error.oclif || {}
+  error.oclif.exit = options?.exit === undefined ? 2 : options.exit
+  return error
+}
+
+export class CLIError extends Error implements ExitableError {
+  oclif: ExitableError['oclif']
 
   code?: string
 
-  constructor(error: string | Error, options: {exit?: number | false} & PrettyPrintableError = {}) {
-    const addExitCode = (error: any) => {
-      error.oclif = error.oclif || {}
-      error.oclif.exit = options.exit === undefined ? 2 : options.exit
-      return error
-    }
-    if (error instanceof Error) return addExitCode(error as any)
+  constructor(error: string, options: {exit?: number | false} & PrettyPrintableError = {}) {
     super(error)
-    addExitCode(this)
+    addOclifExitCode(this, options)
     this.code = options.code
   }
 
@@ -57,7 +63,7 @@ export class CLIError extends Error {
 
 export namespace CLIError {
   export class Warn extends CLIError {
-    constructor(err: Error | string) {
+    constructor(err: string) {
       super(err)
       this.name = 'Warning'
     }

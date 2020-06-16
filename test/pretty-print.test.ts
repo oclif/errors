@@ -1,6 +1,7 @@
 import {expect, fancy} from 'fancy-test'
 import prettyPrint, {PrettyPrintableError} from '../src/errors/pretty-print'
 import {CLIError} from '../src'
+import {config} from '../src/config'
 const stripAnsi = require('strip-ansi')
 
 describe('pretty-print', () => {
@@ -47,6 +48,26 @@ describe('pretty-print', () => {
       const sampleError = new CLIError('This is a CLI error')
       sampleError.name = 'Errorz'
       expect(stripAnsi(prettyPrint(sampleError))).to.equal(` ${defaultBang}   Errorz: This is a CLI error`)
+    })
+  })
+
+  describe('config.debug set to true', () => {
+    let initialConfigDebug: any
+
+    beforeEach(() => {
+      initialConfigDebug = config.debug
+      config.debug = true
+    })
+
+    afterEach(() => {
+      config.debug = initialConfigDebug
+    })
+
+    fancy
+    .it('shows the stack for an error', async () => {
+      const error = new Error()
+      error.stack = 'this is the error stack property'
+      expect(prettyPrint(error)).to.equal('this is the error stack property')
     })
   })
 })

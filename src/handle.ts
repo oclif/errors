@@ -2,10 +2,11 @@
 /* eslint-disable unicorn/no-process-exit */
 import {config} from './config'
 import prettyPrint, {PrettyPrintableError} from './errors/pretty-print'
-import {CLIError, ExitError} from '.'
+import {ExitError} from '.'
 import clean = require('clean-stack')
+import {ExitableError} from './errors/cli'
 
-export const handle = (err: Error & PrettyPrintableError) => {
+export const handle = (err: Error & PrettyPrintableError & ExitableError) => {
   try {
     if (!err) err = new Error('no error?')
     if (err.message === 'SIGINT') process.exit(1)
@@ -17,7 +18,9 @@ export const handle = (err: Error & PrettyPrintableError) => {
     if (shouldPrint) {
       console.error(pretty ? pretty : stack)
     }
-    const exitCode = ('oclif' in err && err.oclif.exit !== undefined) ? err.oclif.exit : 1
+
+    const exitCode = err.oclif?.exit !== undefined && err.oclif?.exit !== false ? err.oclif?.exit : 1
+
     if (config.errorLogger && err.code !== 'EEXIT') {
       if (stack) {
         config.errorLogger.log(stack)
