@@ -5,7 +5,7 @@ import prettyPrint, {PrettyPrintableError} from './errors/pretty-print'
 import {CLIError, ExitError} from '.'
 import clean = require('clean-stack')
 
-export const handle = (err: Error & PrettyPrintableError | CLIError & PrettyPrintableError) => {
+export const handle = (err: Error & PrettyPrintableError) => {
   try {
     if (!err) err = new Error('no error?')
     if (err.message === 'SIGINT') process.exit(1)
@@ -19,7 +19,7 @@ export const handle = (err: Error & PrettyPrintableError | CLIError & PrettyPrin
     }
     const exitCode = ('oclif' in err && err.oclif.exit !== undefined) ? err.oclif.exit : 1
     if (config.errorLogger && err.code !== 'EEXIT') {
-      if (err.stack) {
+      if (stack) {
         config.errorLogger.log(stack)
       }
 

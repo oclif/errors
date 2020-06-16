@@ -9,7 +9,7 @@ export interface PrettyPrintableError {
   message?: string;
 
   /**
-   * a unique error code for this instance of the error
+   * a unique error code for this error class
    */
   code?: string;
 
