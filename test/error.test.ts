@@ -35,4 +35,54 @@ describe('error', () => {
     expect(error.suggestion).to.equal('rm -rf node_modules')
   })
   .it('attached pretty print properties from options to an existing error object')
+
+  fancy
+  .do(() => {
+    const e: any = new Error('An existing error object error!')
+    e.code = 'ORIG_ERR'
+    e.ref = 'ORIG_REF'
+    e.suggestion = 'ORIG_SUGGESTION'
+    error(e, {code: 'ERR', ref: 'https://oclif.com/error', suggestion: 'rm -rf node_modules'})
+  })
+  .catch((error: PrettyPrintableError) => {
+    expect(error.code).to.equal('ORIG_ERR')
+    expect(error.ref).to.equal('ORIG_REF')
+    expect(error.suggestion).to.equal('ORIG_SUGGESTION')
+  })
+  .it('preserves original pretty printable properties and is not overwritten by options')
+
+  describe('exitable errors', () => {
+    fancy
+    .do(() => {
+      error(new Error('An existing error object error!'))
+    })
+    .catch((error: any) => {
+      const defaultErrorCode = 2
+      expect(error.oclif.exit).to.equal(defaultErrorCode)
+    })
+    .it('adds oclif exit code to errors by default')
+
+    fancy
+    .do(() => {
+      error(new Error('An existing error object error!'), {exit: 9001})
+    })
+    .catch((error: any) => {
+      expect(error.oclif.exit).to.equal(9001)
+    })
+    .it('applies the exit property on options to the error object')
+
+    fancy
+    .do(() => {
+      const e: any = new Error('An existing error object error!')
+      e.oclif = {
+        code: 'ORIG_EXIT_CODE',
+      }
+
+      error(e)
+    })
+    .catch((error: any) => {
+      expect(error.oclif.code).to.equal('ORIG_EXIT_CODE')
+    })
+    .it('preserves original oclif exitable error properties and is not overwritten by options')
+  })
 })
