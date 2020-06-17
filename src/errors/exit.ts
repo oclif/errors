@@ -10,6 +10,7 @@ export class ExitError extends CLIError implements ExitableError {
   }
 
   render(): string {
+    console.warn('`render` methods on CLIError are deprecated in favor of using pretty print functions')
     return ''
   }
 }
