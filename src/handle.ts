@@ -4,11 +4,11 @@ import {config} from './config'
 import prettyPrint, {PrettyPrintableError} from './errors/pretty-print'
 import {ExitError} from '.'
 import clean = require('clean-stack')
-import {ExitableError} from './errors/cli'
+import {OclifError, CLIError} from './errors/cli'
 
-export const handle = (err: Error & PrettyPrintableError & ExitableError) => {
+export const handle = (err: Error & Partial<PrettyPrintableError> & Partial<OclifError>) => {
   try {
-    if (!err) err = new Error('no error?')
+    if (!err) err = new CLIError('no error?')
     if (err.message === 'SIGINT') process.exit(1)
 
     const shouldPrint = !(err instanceof ExitError)

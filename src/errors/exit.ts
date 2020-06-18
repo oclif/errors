@@ -1,6 +1,6 @@
-import {CLIError, ExitableError} from './cli'
+import {CLIError, OclifError} from './cli'
 
-export class ExitError extends CLIError implements ExitableError {
+export class ExitError extends CLIError implements OclifError {
   oclif!: { exit: number }
 
   code = 'EEXIT'

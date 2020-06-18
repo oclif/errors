@@ -7,7 +7,7 @@ export {Logger} from './logger'
 export {config} from './config'
 
 import {config} from './config'
-import {CLIError, addOclifExitCode, ExitableError} from './errors/cli'
+import {CLIError, addOclifExitCode, OclifError} from './errors/cli'
 import {ExitError} from './errors/exit'
 import prettyPrint, {PrettyPrintableError, applyPrettyPrintOptions} from './errors/pretty-print'
 
@@ -18,17 +18,17 @@ export function exit(code = 0): never {
 export function error(input: string | Error, options: {exit: false} & PrettyPrintableError): void
 export function error(input: string | Error, options?: {exit?: number} & PrettyPrintableError): never
 export function error(input: string | Error, options: {exit?: number | false} & PrettyPrintableError = {}) {
-  let err: Error & ExitableError
+  let err: Error & OclifError
 
   if (typeof input === 'string') {
     err = new CLIError(input, options)
   } else if (input instanceof Error) {
-    err = addOclifExitCode(input, options) as Error & ExitableError
+    err = addOclifExitCode(input, options) as Error & OclifError
   } else {
     throw new TypeError('first argument must be a string or instance of Error')
   }
 
-  err = applyPrettyPrintOptions(err, options) as Error & ExitableError & PrettyPrintableError
+  err = applyPrettyPrintOptions(err, options) as Error & OclifError & PrettyPrintableError
 
   if (options.exit === false) {
     const message = prettyPrint(err)
@@ -38,12 +38,12 @@ export function error(input: string | Error, options: {exit?: number | false} & 
 }
 
 export function warn(input: string | Error) {
-  let err: Error & ExitableError
+  let err: Error & OclifError
 
   if (typeof input === 'string') {
     err = new CLIError.Warn(input)
   } else if (input instanceof Error) {
-    err = addOclifExitCode(input) as Error & ExitableError
+    err = addOclifExitCode(input) as Error & OclifError
   } else {
     throw new TypeError('first argument must be a string or instance of Error')
   }

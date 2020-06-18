@@ -8,20 +8,26 @@ import * as Wrap from 'wrap-ansi'
 import {config} from '../config'
 import {PrettyPrintableError} from './pretty-print'
 
-export interface ExitableError {
-  oclif?: {
+/**
+ * properties specific to internal oclif error handling
+ */
+export interface OclifError {
+  oclif: {
     exit?: number | false;
   };
 }
 
-export function addOclifExitCode(error: Error & ExitableError, options?: {exit?: number | false}): ExitableError {
-  error.oclif = error.oclif || {}
+export function addOclifExitCode(error: Record<string, any>, options?: {exit?: number | false}): OclifError {
+  if (!('oclif' in error)) {
+    (error as unknown as OclifError).oclif = {}
+  }
+
   error.oclif.exit = options?.exit === undefined ? 2 : options.exit
-  return error
+  return error as OclifError
 }
 
-export class CLIError extends Error implements ExitableError {
-  oclif: ExitableError['oclif']
+export class CLIError extends Error implements OclifError {
+  oclif: OclifError['oclif'] = {}
 
   code?: string
 

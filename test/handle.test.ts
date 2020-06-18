@@ -4,20 +4,24 @@ import * as path from 'path'
 
 import {CLIError, config, ExitError} from '../src'
 import {handle} from '../src/handle'
+import {exit as exitErrorThrower} from '../src'
 
 const errlog = path.join(__dirname, '../tmp/mytest/error.log')
 const x = process.platform === 'win32' ? '»' : '›'
 
-const exit = process.exit
+const originalExit = process.exit
+const originalExitCode = process.exitCode
 
 describe('handle', () => {
   beforeEach(() => {
+    process.exitCode = undefined;
     (process as any).exit = (code: any) => {
       process.exitCode = code
     }
   })
   afterEach(() => {
-    (process as any).exit = exit
+    (process as any).exit = originalExit;
+    (process as any).exitCode = originalExitCode
   })
 
   fancy
@@ -81,5 +85,22 @@ describe('handle', () => {
     await config.errorLogger!.flush()
     expect(fs.readFileSync(errlog, 'utf8')).to.contain('Error: uh oh!')
     expect(process.exitCode).to.equal(2)
+  })
+
+  describe('exit', () => {
+    fancy
+    .stderr()
+    .stdout()
+    .it('exits without displaying anything', ctx => {
+      try {
+        exitErrorThrower(9000)
+      } catch (error) {
+        handle(error)
+      }
+
+      expect(ctx.stdout).to.equal('')
+      expect(ctx.stderr).to.equal('')
+      expect(process.exitCode).to.be.equal(9000)
+    })
   })
 })

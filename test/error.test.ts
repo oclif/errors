@@ -51,7 +51,20 @@ describe('error', () => {
   })
   .it('preserves original pretty printable properties and is not overwritten by options')
 
-  describe('exitable errors', () => {
+  fancy
+  .stdout()
+  .stderr()
+  .do(() => {
+    error('an error is reported but is not rethrown', {exit: false})
+  })
+  // there is no .catch here because the error is not rethrown
+  // however it should be outputted
+  .it('does not rethrow error when exit: false option is set', ctx => {
+    expect(ctx.stderr).to.contain('Error: an error is reported but is not rethrown')
+    expect(ctx.stdout).to.equal('')
+  })
+
+  describe('applying oclif errors', () => {
     fancy
     .do(() => {
       error(new Error('An existing error object error!'))
