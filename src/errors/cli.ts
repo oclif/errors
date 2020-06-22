@@ -17,7 +17,7 @@ export interface OclifError {
   };
 }
 
-export function addOclifExitCode(error: Record<string, any>, options?: {exit?: number | false}): OclifError {
+export function addOclifExitCode(error: Record<string, any>, options?: { exit?: number | false }): OclifError {
   if (!('oclif' in error)) {
     (error as unknown as OclifError).oclif = {}
   }
@@ -31,8 +31,8 @@ export class CLIError extends Error implements OclifError {
 
   code?: string
 
-  constructor(error: string, options: {exit?: number | false} & PrettyPrintableError = {}) {
-    super(error)
+  constructor(error: string | Error, options: { exit?: number | false } & PrettyPrintableError = {}) {
+    super(error instanceof Error ? error.message : error)
     addOclifExitCode(this, options)
     this.code = options.code
   }
@@ -66,15 +66,15 @@ export class CLIError extends Error implements OclifError {
     let red: typeof Chalk.red = ((s: string) => s) as any
     try {
       red = require('chalk').red
-    } catch {}
+    } catch { }
     return red(process.platform === 'win32' ? '»' : '›')
   }
 }
 
 export namespace CLIError {
   export class Warn extends CLIError {
-    constructor(err: string) {
-      super(err)
+    constructor(err: string | Error) {
+      super(err instanceof Error ? err.message : err)
       this.name = 'Warning'
     }
 
@@ -82,7 +82,7 @@ export namespace CLIError {
       let yellow: typeof Chalk.yellow = ((s: string) => s) as any
       try {
         yellow = require('chalk').yellow
-      } catch {}
+      } catch { }
       return yellow(process.platform === 'win32' ? '»' : '›')
     }
   }
