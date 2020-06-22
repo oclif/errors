@@ -42,8 +42,11 @@ export class CLIError extends Error implements OclifError {
     return clean(super.stack!, {pretty: true})
   }
 
+  /**
+   * @deprecated `render` Errors display should be handled by display function, like pretty-print
+   * @return {string} returns a string representing the dispay of the error
+   */
   render(): string {
-    console.warn('`render` methods on CLIError are deprecated in favor of using pretty print functions')
     if (config.debug) {
       return this.stack
     }
