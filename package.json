@@ -5,7 +5,7 @@
   "author": "Jeff Dickey @jdxcode",
   "bugs": "https://github.com/oclif/errors/issues",
   "dependencies": {
-    "clean-stack": "^2.0.0",
+    "clean-stack": "^3.0.0",
     "fs-extra": "^7.0.0",
     "indent-string": "^3.2.0",
     "strip-ansi": "^6.0.0",
