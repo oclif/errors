@@ -48,9 +48,9 @@
   "scripts": {
     "build": "rm -rf lib && tsc",
     "lint": "tsc -p test --noEmit && eslint . --ext .ts --config .eslintrc",
-    "posttest": "rm -rf lib && yarn lint",
+    "posttest": "yarn lint",
     "prepublishOnly": "yarn run build",
-    "pretest": "yarn run build",
+    "pretest": "yarn run build --noEmit",
     "test": "mocha --forbid-only \"test/**/*.test.ts\""
   },
   "types": "lib/index.d.ts"
