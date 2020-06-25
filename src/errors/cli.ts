@@ -1,26 +1,39 @@
 // tslint:disable no-implicit-dependencies
 
-import Chalk from 'chalk'
+import * as Chalk from 'chalk'
 import Clean = require('clean-stack')
 import Indent = require('indent-string')
 import * as Wrap from 'wrap-ansi'
 
 import {config} from '../config'
+import {PrettyPrintableError} from './pretty-print'
 
-export class CLIError extends Error {
-  oclif: any
+/**
+ * properties specific to internal oclif error handling
+ */
+export interface OclifError {
+  oclif: {
+    exit?: number | false;
+  };
+}
+
+export function addOclifExitCode(error: Record<string, any>, options?: { exit?: number | false }): OclifError {
+  if (!('oclif' in error)) {
+    (error as unknown as OclifError).oclif = {}
+  }
+
+  error.oclif.exit = options?.exit === undefined ? 2 : options.exit
+  return error as OclifError
+}
+
+export class CLIError extends Error implements OclifError {
+  oclif: OclifError['oclif'] = {}
 
   code?: string
 
-  constructor(error: string | Error, options: {code?: string; exit?: number | false} = {}) {
-    const addExitCode = (error: any) => {
-      error.oclif = error.oclif || {}
-      error.oclif.exit = options.exit === undefined ? 2 : options.exit
-      return error
-    }
-    if (error instanceof Error) return addExitCode(error as any)
-    super(error)
-    addExitCode(this)
+  constructor(error: string | Error, options: { exit?: number | false } & PrettyPrintableError = {}) {
+    super(error instanceof Error ? error.message : error)
+    addOclifExitCode(this, options)
     this.code = options.code
   }
 
@@ -29,6 +42,10 @@ export class CLIError extends Error {
     return clean(super.stack!, {pretty: true})
   }
 
+  /**
+   * @deprecated `render` Errors display should be handled by display function, like pretty-print
+   * @return {string} returns a string representing the dispay of the error
+   */
   render(): string {
     if (config.debug) {
       return this.stack
@@ -45,27 +62,27 @@ export class CLIError extends Error {
     return output
   }
 
-  protected get bang() {
+  get bang() {
     let red: typeof Chalk.red = ((s: string) => s) as any
     try {
       red = require('chalk').red
-    } catch {}
+    } catch { }
     return red(process.platform === 'win32' ? '»' : '›')
   }
 }
 
 export namespace CLIError {
   export class Warn extends CLIError {
-    constructor(err: Error | string) {
-      super(err)
+    constructor(err: string | Error) {
+      super(err instanceof Error ? err.message : err)
       this.name = 'Warning'
     }
 
-    protected get bang() {
+    get bang() {
       let yellow: typeof Chalk.yellow = ((s: string) => s) as any
       try {
         yellow = require('chalk').yellow
-      } catch {}
+      } catch { }
       return yellow(process.platform === 'win32' ? '»' : '›')
     }
   }

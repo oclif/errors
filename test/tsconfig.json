@@ -1,10 +1,10 @@
 {
   "extends": "../tsconfig",
   "compilerOptions": {
-    "sourceMap": true
+    "sourceMap": true,
+    "module": "commonjs"
   },
   "include": [
-    "./**/*",
-    "../src/**/*"
+    "./**/*"
   ]
 }

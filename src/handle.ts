@@ -1,21 +1,31 @@
 /* eslint-disable no-process-exit */
 /* eslint-disable unicorn/no-process-exit */
-
-import clean = require('clean-stack')
-
 import {config} from './config'
+import prettyPrint, {PrettyPrintableError} from './errors/pretty-print'
+import {ExitError} from '.'
+import clean = require('clean-stack')
+import {OclifError, CLIError} from './errors/cli'
 
-export const handle = (err: any) => {
+export const handle = (err: Error & Partial<PrettyPrintableError> & Partial<OclifError>) => {
   try {
-    if (!err) err = new Error('no error?')
+    if (!err) err = new CLIError('no error?')
     if (err.message === 'SIGINT') process.exit(1)
+
+    const shouldPrint = !(err instanceof ExitError)
+    const pretty = prettyPrint(err)
     const stack = clean(err.stack || '', {pretty: true})
-    let message = stack
-    if (err.oclif && typeof err.render === 'function') message = err.render()
-    if (message) console.error(message)
-    const exitCode = (err.oclif && err.oclif.exit !== undefined) ? err.oclif.exit : 1
+
+    if (shouldPrint) {
+      console.error(pretty ? pretty : stack)
+    }
+
+    const exitCode = err.oclif?.exit !== undefined && err.oclif?.exit !== false ? err.oclif?.exit : 1
+
     if (config.errorLogger && err.code !== 'EEXIT') {
-      config.errorLogger.log(stack)
+      if (stack) {
+        config.errorLogger.log(stack)
+      }
+
       config.errorLogger.flush()
       .then(() => process.exit(exitCode))
       .catch(console.error)

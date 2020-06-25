@@ -1,6 +1,6 @@
-import {CLIError} from './cli'
+import {CLIError, OclifError} from './cli'
 
-export class ExitError extends CLIError {
+export class ExitError extends CLIError implements OclifError {
   oclif!: { exit: number }
 
   code = 'EEXIT'
@@ -10,6 +10,7 @@ export class ExitError extends CLIError {
   }
 
   render(): string {
+    console.warn('`render` methods on CLIError are deprecated in favor of using pretty print functions')
     return ''
   }
 }
