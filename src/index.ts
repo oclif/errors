@@ -11,7 +11,7 @@ import {CLIError, addOclifExitCode, OclifError} from './errors/cli'
 import {ExitError} from './errors/exit'
 import prettyPrint, {PrettyPrintableError, applyPrettyPrintOptions} from './errors/pretty-print'
 
-export {prettyPrint}
+export {PrettyPrintableError}
 
 export function exit(code = 0): never {
   throw new ExitError(code)
