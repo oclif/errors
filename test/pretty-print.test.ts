@@ -10,14 +10,26 @@ describe('pretty-print', () => {
     const sampleError: Error & PrettyPrintableError = new Error('Something very serious has gone wrong with the flags!')
     sampleError.ref = 'https://oclif.io/docs/flags'
     sampleError.code = 'OCLIF_BAD_FLAG'
-    sampleError.suggestion = 'Try using using a good flag'
+    sampleError.suggestions = ['Try using using a good flag']
 
     expect(
       stripAnsi(prettyPrint(sampleError)),
     ).to.equal(`    Error: Something very serious has gone wrong with the flags!
     Code: OCLIF_BAD_FLAG
-    Suggestion: Try using using a good flag
+    Try this: Try using using a good flag
     Reference: https://oclif.io/docs/flags`)
+  })
+
+  fancy
+  .it('pretty prints multiple suggestions', async () => {
+    const sampleError: Error & PrettyPrintableError = new Error('Something very serious has gone wrong with the flags!')
+    sampleError.suggestions = ['Use a good flag', 'Use no flags']
+    expect(
+      stripAnsi(prettyPrint(sampleError)),
+    ).to.equal(`    Error: Something very serious has gone wrong with the flags!
+    Try this:
+      * Use a good flag
+      * Use no flags`)
   })
 
   fancy
