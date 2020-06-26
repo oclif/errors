@@ -17,17 +17,6 @@ version: 2
 jobs:
   node-latest:
     <<: *test
-    environment:
-      NYC: "yarn exec nyc -- --nycrc-path node_modules/@oclif/nyc-config/.nycrc"
-    steps:
-      - checkout
-      - restore-cache: *restore_cache
-      - run: *yarn_install
-      - run: yarn add -D nyc@13 @oclif/nyc-config@1
-      - run: $NYC yarn test
-      - run: |
-          $NYC report --reporter text-lcov > coverage.lcov
-          curl -s https://codecov.io/bash | bash
   node-12:
     <<: *test
     docker:
