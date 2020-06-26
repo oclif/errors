@@ -1,24 +1,22 @@
 ---
 aliases:
-  - &yarn-install |
-      yarn install
-  - &restore_cache
-      keys:
-        - v1-yarn-{{checksum ".circleci/config.yml"}}-{{ checksum "yarn.lock"}}
-        - v1-yarn-{{checksum ".circleci/config.yml"}}
   - &test
-      docker:
-        - image: node:latest
       working_directory: ~/cli
       steps:
         - checkout
-        - restore-cache: *restore_cache
-        - run: *yarn-install
+        - restore-cache: &restore_cache
+            keys:
+              - v1-yarn-{{checksum ".circleci/config.yml"}}-{{ checksum "yarn.lock"}}
+              - v1-yarn-{{checksum ".circleci/config.yml"}}
+        - run: &yarn_install
+            command: yarn install
         - run: yarn test
 version: 2
 jobs:
   node-latest:
     <<: *test
+    docker:
+      - image: node:latest
     environment:
       NYC: "yarn exec nyc -- --nycrc-path node_modules/@oclif/nyc-config/.nycrc"
     steps:
@@ -26,8 +24,8 @@ jobs:
       - restore-cache: *restore_cache
       - run: *yarn-install
       - run: yarn add -D nyc@13 @oclif/nyc-config@1
+      - run: $NYC yarn test
       - run: |
-          $NYC yarn test
           $NYC report --reporter text-lcov > coverage.lcov
           curl -s https://codecov.io/bash | bash
   node-12:
