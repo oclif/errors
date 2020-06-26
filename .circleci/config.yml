@@ -22,7 +22,7 @@ jobs:
     steps:
       - checkout
       - restore-cache: *restore_cache
-      - run: *yarn-install
+      - run: *yarn_install
       - run: yarn add -D nyc@13 @oclif/nyc-config@1
       - run: $NYC yarn test
       - run: |
