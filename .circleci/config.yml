@@ -1,6 +1,8 @@
 ---
 aliases:
   - &test
+      docker:
+        - image: node:latest
       working_directory: ~/cli
       steps:
         - checkout
@@ -15,8 +17,6 @@ version: 2
 jobs:
   node-latest:
     <<: *test
-    docker:
-      - image: node:latest
     environment:
       NYC: "yarn exec nyc -- --nycrc-path node_modules/@oclif/nyc-config/.nycrc"
     steps:
