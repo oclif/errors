@@ -23,23 +23,32 @@ export interface PrettyPrintableError {
   /**
    * a suggestion that may be useful or provide additional context
    */
-  suggestion?: string;
+  suggestions?: string[];
 }
 
 // These exist for backwards compatibility with CLIError
 type CLIErrorDisplayOptions = { name?: string; bang?: string }
 
 export function applyPrettyPrintOptions(error: Error, options: PrettyPrintableError): PrettyPrintableError {
-  const prettyErrorKeys: (keyof PrettyPrintableError)[] = ['message', 'code', 'ref', 'suggestion']
+  const prettyErrorKeys: (keyof PrettyPrintableError)[] = ['message', 'code', 'ref', 'suggestions']
 
   prettyErrorKeys.forEach(key => {
     const applyOptionsKey = !(key in error) && options[key]
     if (applyOptionsKey) {
-      (error as PrettyPrintableError)[key] = options[key]
+      (error as any)[key] = options[key]
     }
   })
 
   return error
+}
+
+const formatSuggestions = (suggestions?: string[]): string | undefined => {
+  const label = 'Try this:'
+  if (!suggestions || suggestions.length === 0) return undefined
+  if (suggestions.length === 1) return `${label} ${suggestions[0]}`
+
+  const multiple = suggestions.map(suggestion => `* ${suggestion}`).join('\n')
+  return `${label}\n${indent(multiple, 2)}`
 }
 
 export default function prettyPrint(error: Error & PrettyPrintableError & CLIErrorDisplayOptions) {
@@ -47,16 +56,16 @@ export default function prettyPrint(error: Error & PrettyPrintableError & CLIErr
     return error.stack
   }
 
-  const {message, code, suggestion, ref, name: errorSuffix, bang} = error
+  const {message, code, suggestions, ref, name: errorSuffix, bang} = error
 
   // errorSuffix is pulled from the 'name' property on CLIError
   // and is like either Error or Warning
   const formattedHeader = message ? `${errorSuffix || 'Error'}: ${message}` : undefined
   const formattedCode = code ? `Code: ${code}` : undefined
-  const formattedSuggestion = suggestion ? `Suggestion: ${suggestion}` : undefined
+  const formattedSuggestions = formatSuggestions(suggestions)
   const formattedReference = ref ? `Reference: ${ref}` : undefined
 
-  const formatted = [formattedHeader, formattedCode, formattedSuggestion, formattedReference]
+  const formatted = [formattedHeader, formattedCode, formattedSuggestions, formattedReference]
   .filter(Boolean)
   .join('\n')
 

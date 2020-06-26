@@ -14,25 +14,25 @@ describe('error', () => {
 
   fancy
   .do(() => {
-    error('An error happened!', {code: 'ERR', ref: 'https://oclif.com/error', suggestion: 'rm -rf node_modules'})
+    error('An error happened!', {code: 'ERR', ref: 'https://oclif.com/error', suggestions: ['rm -rf node_modules']})
   })
   .catch((error: PrettyPrintableError) => {
     expect(error.message).to.equal('An error happened!')
     expect(error.code).to.equal('ERR')
     expect(error.ref).to.equal('https://oclif.com/error')
-    expect(error.suggestion).to.equal('rm -rf node_modules')
+    expect(error.suggestions).to.deep.equal(['rm -rf node_modules'])
   })
   .it('attaches pretty print properties to a new error from options')
 
   fancy
   .do(() => {
-    error(new Error('An existing error object error!'), {code: 'ERR', ref: 'https://oclif.com/error', suggestion: 'rm -rf node_modules'})
+    error(new Error('An existing error object error!'), {code: 'ERR', ref: 'https://oclif.com/error', suggestions: ['rm -rf node_modules']})
   })
   .catch((error: PrettyPrintableError) => {
     expect(error.message).to.equal('An existing error object error!')
     expect(error.code).to.equal('ERR')
     expect(error.ref).to.equal('https://oclif.com/error')
-    expect(error.suggestion).to.equal('rm -rf node_modules')
+    expect(error.suggestions).to.deep.equal(['rm -rf node_modules'])
   })
   .it('attached pretty print properties from options to an existing error object')
 
@@ -41,13 +41,13 @@ describe('error', () => {
     const e: any = new Error('An existing error object error!')
     e.code = 'ORIG_ERR'
     e.ref = 'ORIG_REF'
-    e.suggestion = 'ORIG_SUGGESTION'
-    error(e, {code: 'ERR', ref: 'https://oclif.com/error', suggestion: 'rm -rf node_modules'})
+    e.suggestions = ['ORIG_SUGGESTION']
+    error(e, {code: 'ERR', ref: 'https://oclif.com/error', suggestions: ['rm -rf node_modules']})
   })
   .catch((error: PrettyPrintableError) => {
     expect(error.code).to.equal('ORIG_ERR')
     expect(error.ref).to.equal('ORIG_REF')
-    expect(error.suggestion).to.equal('ORIG_SUGGESTION')
+    expect(error.suggestions).to.deep.equal(['ORIG_SUGGESTION'])
   })
   .it('preserves original pretty printable properties and is not overwritten by options')
 
