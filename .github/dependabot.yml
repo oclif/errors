@@ -9,17 +9,5 @@ updates:
     open-pull-requests-limit: 5
     pull-request-branch-name:
       separator: "-"
-    allow:
-      - dependency-name: "*oclif*"
-  - package-ecosystem: "npm"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    labels:
-      - "dependencies"
-    open-pull-requests-limit: 5
-    pull-request-branch-name:
-      separator: "-"
     ignore:
-      - dependency-name: "*oclif*"
       - dependency-name: "typescript"
