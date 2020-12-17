@@ -1,5 +1,5 @@
 function termwidth(stream: any): number {
-  if (!stream.isTTY) {
+  if (!stream.isTTY || !stream.getWindowSize) {
     return 80
   }
   const width = stream.getWindowSize()[0]
