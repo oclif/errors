@@ -7,7 +7,7 @@
   "dependencies": {
     "clean-stack": "^3.0.0",
     "fs-extra": "^8.1",
-    "indent-string": "^4.0.0",
+    "indent-string": "^5.0.0",
     "strip-ansi": "^6.0.0",
     "wrap-ansi": "^7.0.0"
   },
