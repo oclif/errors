@@ -9,7 +9,7 @@
     "fs-extra": "^8.1",
     "indent-string": "^4.0.0",
     "strip-ansi": "^6.0.0",
-    "wrap-ansi": "^7.0.0"
+    "wrap-ansi": "^8.0.0"
   },
   "devDependencies": {
     "@types/chai": "^4.2.11",
