@@ -1,6 +1,8 @@
 @oclif/errors
 ==============
 
+**This library has been replaced by [@oclif/core](https://github.com/oclif/core) and is now in maintenance mode. We will only consider PRs that address security concerns.**
+
 display friendly CLI errors and log to error log
 
 [![Version](https://img.shields.io/npm/v/@oclif/errors.svg)](https://npmjs.org/package/@oclif/errors)

@@ -2,7 +2,7 @@
   "name": "@oclif/errors",
   "description": "display friendly CLI errors and log to error log",
   "version": "1.3.5",
-  "author": "Jeff Dickey @jdxcode",
+  "author": "Salesforce",
   "bugs": "https://github.com/oclif/errors/issues",
   "dependencies": {
     "clean-stack": "^3.0.0",
